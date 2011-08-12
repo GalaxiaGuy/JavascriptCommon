@@ -1,0 +1,51 @@
+<html>
+    <body>
+        <div id="test">
+            <span id="up">false</span>
+            <span id="down">false</span>
+            <span id="left">false</span>
+            <span id="right">false</span>   
+        </div>
+        <div>
+            <span id="pup">false</span>
+            <span id="pdown">false</span>
+            <span id="pleft">false</span>
+            <span id="pright">false</span> 
+        </div>
+        <script src="../compatibility/requestAnimFrame.js"></script>
+        <script src="../input/Key.js"></script>
+        <script src="../input/InputManager.js"></script>
+        <script>
+            var input = new InputManager();
+            
+            var test = document.getElementById('test');
+            
+            var up = document.getElementById('up');
+            var down = document.getElementById('down');
+            var left = document.getElementById('left');
+            var right = document.getElementById('right');
+            
+            var pup = document.getElementById('pup');
+            var pdown = document.getElementById('pdown');
+            var pleft = document.getElementById('pleft');
+            var pright = document.getElementById('pright');            
+            
+            (function gameLoop()
+            {                
+                up.innerHTML = input.keys.cursorUp.tapped;
+                down.innerHTML = input.keys.cursorDown.tapped;
+                left.innerHTML = input.keys.cursorLeft.tapped;
+                right.innerHTML = input.keys.cursorRight.tapped;
+                
+                pup.innerHTML = input.keys.cursorUp.pressed;
+                pdown.innerHTML = input.keys.cursorDown.pressed;
+                pleft.innerHTML = input.keys.cursorLeft.pressed;
+                pright.innerHTML = input.keys.cursorRight.pressed;
+                
+                input.update();                
+                
+                requestAnimFrame(gameLoop, test);
+            })();            
+        </script>
+    </body>
+</html>
